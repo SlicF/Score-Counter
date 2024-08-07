@@ -37,16 +37,5 @@
   }
 }
 
-/* MobileApp specific styles */
-@media (orientation: portrait) {
-  .card-title {
-    font-size: 300px;
-  }
-}
 
-@media (orientation: landscape) {
-  .card-title {
-    font-size: 150px;
-  }
-}
 
