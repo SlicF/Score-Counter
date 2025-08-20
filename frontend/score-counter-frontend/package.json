@@ -38,8 +38,15 @@
     ]
   },
   "devDependencies": {
+  "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+  "@babel/plugin-transform-class-properties": "^7.27.1",
+  "@babel/plugin-transform-nullish-coalescing-operator": "^7.27.1",
+  "@babel/plugin-transform-numeric-separator": "^7.27.1",
+  "@babel/plugin-transform-optional-chaining": "^7.27.1",
+  "@babel/plugin-transform-private-methods": "^7.27.1",
+  "@babel/plugin-transform-private-property-in-object": "^7.27.1",
     "daisyui": "^4.12.10",
     "tailwindcss": "^3.4.7"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://backend:5000"
 }
