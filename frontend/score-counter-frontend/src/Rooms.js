@@ -22,6 +22,9 @@ function Rooms({ onRoomSelected }) {
     let attempts = 0;
     const maxAttempts = 3;
     let lastError = null;
+
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
     while (attempts < maxAttempts) {
       try {
         const res = await fetch('/api/rooms');
@@ -31,7 +34,7 @@ function Rooms({ onRoomSelected }) {
           // Retry apenas para erros 5xx
           if (res.status >= 500 && res.status < 600) {
             attempts++;
-            await new Promise(resolve => setTimeout(resolve, 500 * attempts));
+            await delay(500 * attempts);
             continue;
           } else {
             // Outros erros não são elegíveis para retry
@@ -52,7 +55,7 @@ function Rooms({ onRoomSelected }) {
         console.error('Erro de rede ao carregar salas:', err && err.stack ? err.stack : err);
         attempts++;
         // Retry apenas para erros de rede
-        await new Promise(resolve => setTimeout(resolve, 500 * attempts));
+        await delay(500 * attempts);
       }
     }
     // Falha final após tentativas
@@ -145,7 +148,7 @@ function Rooms({ onRoomSelected }) {
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-center mb-8">Score Counter - Salas</h1>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Lista de Salas Disponíveis - Lado Esquerdo */}
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -159,7 +162,7 @@ function Rooms({ onRoomSelected }) {
                 {loadingRooms ? '⟳' : '↻'}
               </button>
             </div>
-            
+
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {loadingRooms ? (
                 <div className="text-center py-8 text-gray-400">
